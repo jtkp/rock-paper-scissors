@@ -12,20 +12,42 @@ function playRound(playerSelection, computerSelection) {
 
     let table = [[0, -1, 1], [1, 0, -1], [-1, 1, 0]];
 
-    let result = table[player][computer];
-
-    if (result === 0) {
-        return `It's a draw! You both picked ${player}!`
-    } else if (result === 1) {
-        return `You win! ${player} beats ${computer}!`
-    } else {
-        return `You lose! ${computer} beats ${player}!`
-    }
+    return table[player][computer];
 }
 
 function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
     for (let i = 0; i < 5; i++) {
-        
+        if (i !== 0) {
+            console.log(`Current score: ${playerScore}-${computerScore}`);
+        }
+
+        let playerSelection = prompt(`Please enter "ROCK", "PAPER", or "SCISSORS":`).toUpperCase();
+        let computerSelection = computerPlay();
+
+        let result = playRound(playerSelection, computerSelection);
+
+        if (result === 0) {
+            console.log(`Draw! You both picked ${playerSelection}!`);
+        } else if (result === 1) {
+            console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+            playerScore++;
+        } else {
+            console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
+            computerScore++;
+        }
+    }
+
+    console.log(`The five rounds are up!`);
+    console.log(`The final score is: ${playerScore}-${computerScore}`);
+    if (playerScore === computerScore) {
+        console.log(`It's a draw!`);
+    } else if (playerScore > computerScore) {
+        console.log(`You win the game!`);
+    } else {
+        console.log(`You lose the game!`);
     }
 }
 
@@ -39,4 +61,4 @@ function convertToNum(choice) {
     }
 }
 
-// computerPlay()
+game();
