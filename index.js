@@ -13,13 +13,17 @@ function playRound(playerSelection, computerSelection) {
     let table = [[0, -1, 1], [1, 0, -1], [-1, 1, 0]];
 
     let result = table[player][computer];
+    let text = document.querySelector('#results');
 
     if (result === 0) {
-        console.log(`Draw! You both picked ${playerSelection}!`);
+        // console.log(`Draw! You both picked ${playerSelection}!`);
+        text.textContent = `Draw! You both picked ${playerSelection}!`;
     } else if (result === 1) {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+        // console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+        text.textContent = `You win! ${playerSelection} beats ${computerSelection}!`;
     } else {
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
+        // console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
+        text.textContent = `You lose! ${computerSelection} beats ${playerSelection}!`;
     }
 
     return result;
