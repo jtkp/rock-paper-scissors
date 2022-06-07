@@ -12,7 +12,17 @@ function playRound(playerSelection, computerSelection) {
 
     let table = [[0, -1, 1], [1, 0, -1], [-1, 1, 0]];
 
-    return table[player][computer];
+    let result = table[player][computer];
+
+    if (result === 0) {
+        console.log(`Draw! You both picked ${playerSelection}!`);
+    } else if (result === 1) {
+        console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+    } else {
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
+    }
+
+    return result;
 }
 
 function game() {
@@ -29,13 +39,9 @@ function game() {
 
         let result = playRound(playerSelection, computerSelection);
 
-        if (result === 0) {
-            console.log(`Draw! You both picked ${playerSelection}!`);
-        } else if (result === 1) {
-            console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+        if (result === 1) {
             playerScore++;
         } else {
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
             computerScore++;
         }
     }
@@ -61,4 +67,12 @@ function convertToNum(choice) {
     }
 }
 
-game();
+// game();
+
+const buttonRock = document.querySelector(`#rock`);
+buttonRock.addEventListener('click', () => playRound('ROCK', computerPlay()))
+const buttonPaper = document.querySelector(`#paper`);
+buttonPaper.addEventListener('click', () => playRound('PAPER', computerPlay()))
+const buttonScissors = document.querySelector(`#scissors`);
+buttonScissors.addEventListener('click', () => playRound('SCISSORS', computerPlay()))
+
